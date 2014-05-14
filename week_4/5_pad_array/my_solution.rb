@@ -4,12 +4,12 @@
 # include it in this file. Also make sure everything that isn't code
 # is commented in the file.  
 
-# I worked on this challenge [by myself,  ].
+# I worked on this challenge with [ Joel Yawili  ].
 
 # 1. Pseudocode
 
 ## get into the array class
-## define pad method that takes 2 paramaters. one is mandaatory, the second is optional. 
+## define pad method that takes 2 paramaters. one is mandatory, the second is optional. 
 ## if the second is absent, return nil for (first) times
 ## do the same for destructive method
 
@@ -39,19 +39,20 @@ end
 
 class Array
   def pad(padding, expression=nil) ## expression defaults to nil
-  	padding.times do
+  	self.size.upto(padding - 1) do
   		self << expression ## append the expression to the end of the array 'padding' number of times
   	end
   	print self
   end
 
   def pad!(padding, expression=nil)
-  	padding.times do
+  	self.size.tupto(padding-1) do
   	  self << expression
   	end
   	print self
   end
 end
+
 
 
 # 4. Reflection 
