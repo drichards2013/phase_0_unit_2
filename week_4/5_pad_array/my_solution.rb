@@ -46,7 +46,7 @@ class Array
   end
 
   def pad!(padding, expression=nil)
-  	self.size.tupto(padding-1) do
+  	self.size.upto(padding-1) do
   	  self << expression
   	end
   	print self
