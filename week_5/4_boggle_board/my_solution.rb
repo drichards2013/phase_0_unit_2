@@ -65,6 +65,7 @@ p get_row(1) == ["i", "o", "d", "t"]
 
 
 
+<<<<<<< HEAD
 #-------------------------------------------------------------------------------
 
 # Part 3: Now write a method that takes a column number and returns all the elements in the column.
@@ -95,3 +96,5 @@ p get_col(1) == ['r', 'o', 'c', 'a']
 # Reflection 
 
 # I didn't refactor my solutions because every line serves a purpose. That said, I enjoyed completing this challenge. It took was fun.
+=======
+>>>>>>> upstream/master
