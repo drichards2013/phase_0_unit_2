@@ -8,69 +8,74 @@
 
 class Drawer
 
-attr_reader :contents
+	attr_reader :contents
 
-# Are there any more methods needed in this class?
+	# Are there any more methods needed in this class?
 
-def initialize
-@contents = []
-@open = true
+	def initialize
+		@contents = []
+		@open = true
+	end
+
+	def open
+		@open = true	
+	end
+
+	def close
+		@open = false
+	end 
+
+	def add_item(item)
+		@contents << item
+	end
+
+	def remove_item(item = @contents.pop) #what is `#pop` doing? - removing the last added item
+		@contents.delete(item)
+	end
+
+	def dump  # what should this method return?
+		puts "Your drawer is empty."
+	end
+
+	def view_contents
+		puts "The drawer contains:"
+		@contents.each {|silverware| puts "- " + silverware.type }
+	end
+
+
+	class Silverware
+		attr_reader :type
+
+		# Are there any more methods needed in this class?
+
+		def initialize(type, clean = true)
+			@type = type
+			@clean = clean
+		end
+
+		def eat
+			puts "eating with the #{type}"
+			@clean = false
+		end
+
+		def clean_silverware
+			@clean = true
+		end
+	end
+
 end
 
-def open
-@open = true
-end
-
-def close
-@open = false
-end 
-
-def add_item
-@contents << item
-end
-
-def remove_item(item = @contents.pop) #what is `#pop` doing?
-@contents.delete(item)
-end
-
-def dump  # what should this method return?
-puts "Your drawer is empty."
-end
-
-def view_contents
-puts "The drawer contains:"
-@contents.each {|silverware| puts "- " + silverware.type }
-end
-
-
-class Silverware
-attr_reader :type
-
-# Are there any more methods needed in this class?
-
-def initialize(type, clean = true)
-@type = type
-@clean = clean
-end
-
-def eat
-puts "eating with the #{type}"
-@clean = false
-end
-
-end
-
-knife1 = Silverware.new("knife")
+knife1 = Drawer::Silverware.new("knife")
 
 silverware_drawer = Drawer.new
 silverware_drawer.add_item(knife1) 
-silverware_drawer.add_item(Silverware.new("spoon"))
-silverware_drawer.add_item(Silverware.new("fork")) 
+silverware_drawer.add_item(Drawer::Silverware.new("spoon"))
+silverware_drawer.add_item(Drawer::Silverware.new("fork")) 
 silverware_drawer.view_contents
 
 silverware_drawer.remove_item
 silverware_drawer.view_contents
-sharp_knife = Silverware.new("sharp_knife")
+sharp_knife = Drawer::Silverware.new("sharp_knife")
 
 
 silverware_drawer.add_item(sharp_knife)
@@ -85,18 +90,29 @@ silverware_drawer.view_contents
 silverware_drawer.dump
 silverware_drawer.view_contents #What should this return?
 
-
+fork = Drawer::Silverware.new('fork')
+silverware_drawer.add_item(fork)
 fork = silverware_drawer.remove_item(fork) #add some puts statements to help you trace through the code...
 fork.eat
 
+ultraspoon = Drawer::Silverware.new('spoon')
+silverware_drawer.add_item(ultraspoon)
+silverware_drawer.remove_item(ultraspoon)
+
+
+
 #BONUS SECTION
-# puts fork.clean
+ puts fork.clean_silverware
 
 # DRIVER TESTS GO BELOW THIS LINE
 
+
+puts true if defined?(Drawer) == 'constant' && Drawer.class == Class  
 
 
 
 
 
 # 5. Reflection 
+
+# I'm very tired right now. Challenge was fairly simple.

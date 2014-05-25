@@ -1,6 +1,6 @@
 # U2.W5: Bakery Challenge GPS
 
-# I worked on this challenge with: 
+# I worked on this challenge with: isaac keith
 
 
 
@@ -11,6 +11,44 @@
 
 
 
+def bakery_num(num_of_people, available_food)
+  menu = {"pie" => 8, "cake" => 6, "cookie" => 1}
+  pie_qty = 0
+  cake_qty = 0
+  cookie_qty = 0
+  
+  has_food = false
+
+  
+  has_food = true if menu.include?(available_food)
+  
+
+  raise ArgumentError.new("You can't make that food") if has_food == false
+
+    
+  available_food_qty = menu[available_food] # value at key index 0
+  
+  if num_of_people % available_food_qty == 0 # checks for leftovers -- num people / food quantity matches
+    num_of_food = num_of_people / available_food_qty 
+    return "You need to make #{num_of_food} #{available_food}(s)."
+    
+    
+  else # only run if num ppl ! divisible by food qty
+    while num_of_people > 0 
+      if num_of_people / menu["pie"] > 0
+        pie_qty = num_of_people / menu["pie"]
+        num_of_people = num_of_people % menu["pie"]
+      elsif num_of_people / menu["cake"] > 0
+        cake_qty = num_of_people / menu["cake"]
+        num_of_people = num_of_people % menu["cake"]
+      else
+        cookie_qty = num_of_people
+        num_of_people = 0
+      end
+    end
+    return "You need to make #{pie_qty} pie(s), #{cake_qty} cake(s), and #{cookie_qty} cookie(s)."
+    end
+  end
 
 
 
@@ -34,6 +72,8 @@ p bakery_num(41, "cake") == "You need to make 5 pie(s), 0 cake(s), and 1 cookie(
 
 
 #  Reflection 
+
+# Wasn't an enjoyable experience. Wasn't productive at all. That's pretty much all I have to say.
 
 
 
